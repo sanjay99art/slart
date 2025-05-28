@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thanks for Clicking!</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #ffe6f0, #fff9e6);
+      color: #4a2c3b; /* deep mauve-ish */
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #d6336c; /* bright pink */
+      text-shadow: 0 2px 4px rgba(214, 51, 108, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    /* Heart shape using CSS */
+    .heart {
+      width: 30px;
+      height: 30px;
+      background-color: #d6336c;
+      position: relative;
+      transform-origin: center;
+      animation: beat 1.2s infinite;
+      cursor: default;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-color: #d6336c;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -15px;
+      left: 0;
+    }
+    .heart::after {
+      left: 15px;
+      top: 0;
+    }
+
+    @keyframes beat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+
+    p {
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+      max-width: 400px;
+      color: #6b4a5a;
+      text-shadow: 0 1px 2px rgba(255, 250, 220, 0.5);
+    }
+    button {
+      background-color: #fff9e6; /* lightest yellow */
+      color: #d6336c; /* pink */
+      border: 2px solid #d6336c;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(214, 51, 108, 0.3);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    button:hover {
+      background-color: #d6336c;
+      color: #fff9e6;
+      box-shadow: 0 6px 20px rgba(214, 51, 108, 0.7);
+      border-color: #d6336c;
+    }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      p {
+        font-size: 1.1rem;
+      }
+      button {
+        padding: 12px 30px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    Thanks for Clicking!
+    <span class="heart" aria-label="heart" role="img"></span>
+  </h1>
+  <p>Your support means a lot</p>
+  <button id="growBtn">Help Me to Grow</button>
+
+  <script>
+    const sponsorLink = 'https://your-sponsor-link.com'; // Replace with your sponsored link
+
+    document.getElementById('growBtn').addEventListener('click', () => {
+      window.location.href = sponsorLink;
+    });
+  </script>
+</body>
+</html>
