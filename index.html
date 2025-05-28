@@ -8,7 +8,7 @@
     body {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       background: linear-gradient(135deg, #ffe6f0, #fff9e6);
-      color: #4a2c3b; /* deep mauve-ish */
+      color: #4a2c3b;
       height: 100vh;
       margin: 0;
       display: flex;
@@ -18,26 +18,26 @@
       text-align: center;
       padding: 20px;
     }
+
     h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      color: #d6336c; /* bright pink */
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      color: #d6336c;
       text-shadow: 0 2px 4px rgba(214, 51, 108, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
     }
-    /* Heart shape using CSS */
+
     .heart {
       width: 30px;
       height: 30px;
       background-color: #d6336c;
       position: relative;
-      transform-origin: center;
       animation: beat 1.2s infinite;
-      cursor: default;
     }
+
     .heart::before,
     .heart::after {
       content: "";
@@ -47,10 +47,12 @@
       background-color: #d6336c;
       border-radius: 50%;
     }
+
     .heart::before {
       top: -15px;
       left: 0;
     }
+
     .heart::after {
       left: 15px;
       top: 0;
@@ -66,15 +68,24 @@
     }
 
     p {
-      font-size: 1.3rem;
-      margin-bottom: 40px;
-      max-width: 400px;
+      font-size: 1.2rem;
       color: #6b4a5a;
-      text-shadow: 0 1px 2px rgba(255, 250, 220, 0.5);
+      margin-bottom: 30px;
     }
-    button {
-      background-color: #fff9e6; /* lightest yellow */
-      color: #d6336c; /* pink */
+
+    #loader {
+      width: 0%;
+      height: 6px;
+      background: #d6336c;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      transition: width 0.2s ease;
+    }
+
+    #growBtn {
+      display: none;
+      background-color: #fff9e6;
+      color: #d6336c;
       border: 2px solid #d6336c;
       padding: 15px 40px;
       font-size: 1.2rem;
@@ -82,40 +93,48 @@
       border-radius: 30px;
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(214, 51, 108, 0.3);
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: all 0.3s ease;
     }
-    button:hover {
+
+    #growBtn:hover {
       background-color: #d6336c;
       color: #fff9e6;
       box-shadow: 0 6px 20px rgba(214, 51, 108, 0.7);
-      border-color: #d6336c;
     }
+
     @media (max-width: 480px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-      p {
-        font-size: 1.1rem;
-      }
-      button {
-        padding: 12px 30px;
-        font-size: 1rem;
-      }
+      h1 { font-size: 2rem; }
+      p { font-size: 1rem; }
+      #growBtn { padding: 12px 30px; font-size: 1rem; }
     }
   </style>
 </head>
 <body>
   <h1>
-    Thanks for Clicking!
-    <span class="heart" aria-label="heart" role="img"></span>
+    You’re Amazing! <span class="heart"></span>
   </h1>
-  <p>Your support means a lot</p>
-  <button id="growBtn">Please Continue🩷</button>
+  <p>Hang tight... unlocking your supporter surprise 💝</p>
+  <div id="loader"></div>
+  <button id="growBtn"> Tap to Unlock Your Supporter Surprise</button>
 
   <script>
-    const sponsorLink = 'https://www.profitableratecpm.com/d8hnakfa?key=622fdd621867603a54d17ad1fdf66002'; // Replace with your sponsored link
+    const sponsorLink = 'https://www.profitableratecpm.com/d8hnakfa?key=622fdd621867603a54d17ad1fdf66002';
 
-    document.getElementById('growBtn').addEventListener('click', () => {
+    const growBtn = document.getElementById('growBtn');
+    const loader = document.getElementById('loader');
+
+    let width = 0;
+    const progress = setInterval(() => {
+      width += 2;
+      loader.style.width = width + '%';
+
+      if (width >= 100) {
+        clearInterval(progress);
+        growBtn.style.display = 'inline-block';
+      }
+    }, 100);
+
+    growBtn.addEventListener('click', () => {
       window.location.href = sponsorLink;
     });
   </script>
